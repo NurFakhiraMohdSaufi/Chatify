@@ -5,7 +5,8 @@ import { LogOutIcon } from 'lucide-react';
 import Image from 'next/image';
 import Cookies from 'universal-cookie';
 
-import ListChat from '@/app/chat/page';
+import ListChat from '@/app/chat/ListChat';
+import { SearchRoom } from '@/app/chat/SearchRoom';
 // import { SearchRoom } from '@/app/chat/SearchRoom';
 import { ProfileUser } from '@/app/profile/ProfileUser';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -21,21 +22,20 @@ import {
 	SidebarTrigger,
 } from '@/components/ui/sidebar';
 import { auth } from '@/config/firebase-config';
-import { ChatProvider } from '@/context/ChatContext';
 import logo from '@/images/logo-chatify.png';
 import { IconButton } from '@mui/material';
 
 const cookies = new Cookies();
 
 interface Room {
-    setRoom: (roomName: string) => void;
+    setRoom: (room: string) => void;
     setIsInChat: (isInChat: boolean) => void;
     isSidebarOpen: boolean;
     toggleSidebar: () => void;
 }
 
 export function AppSidebar({
-    // setRoom,
+    setRoom,
     setIsInChat,
     isSidebarOpen,
     toggleSidebar,
@@ -74,13 +74,14 @@ export function AppSidebar({
                         <SidebarGroupContent className='flex flex-col'>
                             <SidebarMenu className='flex-grow'>
                                 <SidebarMenuItem>
-                                    {/* <SearchRoom
+                                    <SearchRoom
                                         setRoom={setRoom}
                                         setIsInChat={setIsInChat}
-                                    /> */}
-                                    <ChatProvider>
-                                        <ListChat />
-                                    </ChatProvider>
+                                    />
+                                    <ListChat
+                                        setRoom={setRoom}
+                                        setIsInChat={setIsInChat}
+                                    />
                                 </SidebarMenuItem>
                             </SidebarMenu>
                         </SidebarGroupContent>

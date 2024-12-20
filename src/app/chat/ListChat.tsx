@@ -16,12 +16,16 @@ import {
 } from 'firebase/firestore';
 import { Circle } from 'lucide-react';
 import Image from 'next/image';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { auth, db } from '@/config/firebase-config';
-import { useChatContext } from '@/context/ChatContext';
 import Box from '@mui/material/Box';
 import CircularProgress from '@mui/material/CircularProgress';
+
+export interface RoomProps {
+    setRoom: (roomName: string) => void;
+    setIsInChat: (isInChat: boolean) => void;
+}
 
 interface Message {
     id: string;
@@ -31,8 +35,7 @@ interface Message {
     createdAt: number;
 }
 
-export default function ListChat() {
-    const {setRoom, setIsInChat} = useChatContext();
+export default function ListChat({setRoom, setIsInChat}: RoomProps) {
     const [rooms, setRooms] = useState<
         {roomName: string; roomPhotoURL: string}[]
     >([]);

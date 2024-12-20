@@ -29,7 +29,7 @@ export function ProfileUser() {
     };
 
     return (
-        <div className='flex flex-row items-center space-x-4 p-2'>
+        <div className='flex flex-row items-center space-x-4 p-1'>
             <div className='cursor-pointer h-10 w-10 rounded-full overflow-hidden '>
                 <EditProfile onProfileEdit={handleProfileEdit} />
             </div>

@@ -9,7 +9,7 @@ import { AppSidebar } from '@/components/sidebar/app-sidebar';
 import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
 import { auth } from '@/config/firebase-config';
 
-// import Room from '../chat/Chat';
+import Room from '../chat/Chat';
 
 export default function Home() {
     const [user, setUser] = useState<User | null>(null);
@@ -47,8 +47,7 @@ export default function Home() {
             />
 
             {!isSidebarOpen && <SidebarTrigger onClick={toggleSidebar} />}
-            <LandingPage />
-            {/* {!isInChat ? <LandingPage /> : room && <Room room={room} />} */}
+            {!isInChat ? <LandingPage /> : room && <Room room={room} />}
         </SidebarProvider>
     );
 }
