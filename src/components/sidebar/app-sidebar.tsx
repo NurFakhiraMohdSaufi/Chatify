@@ -5,7 +5,7 @@ import { LogOutIcon } from 'lucide-react';
 import Image from 'next/image';
 import Cookies from 'universal-cookie';
 
-// import ListChat from '@/app/chat/page';
+import ListChat from '@/app/chat/page';
 // import { SearchRoom } from '@/app/chat/SearchRoom';
 import { ProfileUser } from '@/app/profile/ProfileUser';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -21,21 +21,22 @@ import {
 	SidebarTrigger,
 } from '@/components/ui/sidebar';
 import { auth } from '@/config/firebase-config';
-// import logo from '@/chatify-logo.png';
+import { ChatProvider } from '@/context/ChatContext';
+import logo from '@/images/logo-chatify.png';
 import { IconButton } from '@mui/material';
 
 const cookies = new Cookies();
 
 interface Room {
-    // setRoom: (roomName: string) => void;
-    // setIsInChat: (isInChat: boolean) => void;
+    setRoom: (roomName: string) => void;
+    setIsInChat: (isInChat: boolean) => void;
     isSidebarOpen: boolean;
     toggleSidebar: () => void;
 }
 
 export function AppSidebar({
     // setRoom,
-    // setIsInChat,
+    setIsInChat,
     isSidebarOpen,
     toggleSidebar,
 }: Room) {
@@ -45,7 +46,7 @@ export function AppSidebar({
         await signOut(auth);
         cookies.remove('auth-token');
         // setIsAuth(false);
-        // setIsInChat(false);
+        setIsInChat(false);
     };
 
     return (
@@ -57,7 +58,7 @@ export function AppSidebar({
             <div className='flex items-center justify-between border-b border-gray-700 p-1 h-14'>
                 <SidebarHeader>
                     <Image
-                        src='/src/chatify-logo.png'
+                        src={logo}
                         width={100}
                         height={100}
                         alt='Chatify Logo'
@@ -73,15 +74,13 @@ export function AppSidebar({
                         <SidebarGroupContent className='flex flex-col'>
                             <SidebarMenu className='flex-grow'>
                                 <SidebarMenuItem>
-                                    List chat
                                     {/* <SearchRoom
                                         setRoom={setRoom}
                                         setIsInChat={setIsInChat}
-                                    />
-                                    <ListChat
-                                        setRoom={setRoom}
-                                        setIsInChat={setIsInChat}
                                     /> */}
+                                    <ChatProvider>
+                                        <ListChat />
+                                    </ChatProvider>
                                 </SidebarMenuItem>
                             </SidebarMenu>
                         </SidebarGroupContent>

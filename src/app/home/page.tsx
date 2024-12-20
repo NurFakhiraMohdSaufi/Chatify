@@ -13,8 +13,8 @@ import { auth } from '@/config/firebase-config';
 
 export default function Home() {
     const [user, setUser] = useState<User | null>(null);
-    // const [room, setRoom] = useState<string | null>(null);
-    // const [isInChat, setIsInChat] = useState(false);
+    const [room, setRoom] = useState<string | null>(null);
+    const [isInChat, setIsInChat] = useState(false);
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
     const router = useRouter();
 
@@ -40,15 +40,14 @@ export default function Home() {
     return (
         <SidebarProvider>
             <AppSidebar
-                // setRoom={setRoom}
-                // setIsInChat={setIsInChat}
+                setRoom={setRoom}
+                setIsInChat={setIsInChat}
                 isSidebarOpen={isSidebarOpen}
                 toggleSidebar={toggleSidebar}
             />
 
             {!isSidebarOpen && <SidebarTrigger onClick={toggleSidebar} />}
             <LandingPage />
-
             {/* {!isInChat ? <LandingPage /> : room && <Room room={room} />} */}
         </SidebarProvider>
     );
