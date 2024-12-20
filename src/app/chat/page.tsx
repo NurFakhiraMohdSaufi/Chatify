@@ -23,7 +23,7 @@ import Box from '@mui/material/Box';
 import CircularProgress from '@mui/material/CircularProgress';
 
 // Change from default export to named export
-export interface RoomProps {
+interface ListRoomProps {
     setRoom: (roomName: string) => void;
     setIsInChat: (isInChat: boolean) => void;
 }
@@ -37,7 +37,7 @@ interface Message {
 }
 
 // Default export for the component itself
-export default function ListChat({setRoom, setIsInChat}: RoomProps) {
+export default function ListChat({setRoom, setIsInChat}: ListRoomProps) {
     const [rooms, setRooms] = useState<
         {roomName: string; roomPhotoURL: string}[]
     >([]);
