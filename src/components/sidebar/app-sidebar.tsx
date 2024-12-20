@@ -3,11 +3,11 @@ import '@/styles/Room.css';
 import { signOut } from 'firebase/auth';
 import { LogOutIcon } from 'lucide-react';
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
 import Cookies from 'universal-cookie';
 
 import ListChat from '@/app/chat/ListChat';
 import { SearchRoom } from '@/app/chat/SearchRoom';
-// import { SearchRoom } from '@/app/chat/SearchRoom';
 import { ProfileUser } from '@/app/profile/ProfileUser';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import {
@@ -40,19 +40,47 @@ export function AppSidebar({
     isSidebarOpen,
     toggleSidebar,
 }: Room) {
-    // const user = auth.currentUser?.displayName;
+    // Track the screen size and toggle sidebar visibility
+    const [isMobile, setIsMobile] = useState(false);
 
     const signUserOut = async () => {
         await signOut(auth);
         cookies.remove('auth-token');
-        // setIsAuth(false);
         setIsInChat(false);
     };
+
+    // Hook to monitor screen size
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth < 500) {
+                setIsMobile(true);
+            } else {
+                setIsMobile(false);
+            }
+        };
+
+        // Initial check
+        handleResize();
+
+        // Add event listener to handle resizing
+        window.addEventListener('resize', handleResize);
+
+        // Cleanup event listener on unmount
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
+    // Debug: Log the state of isMobile and isSidebarOpen
+    useEffect(() => {
+        console.log('isMobile:', isMobile);
+        console.log('isSidebarOpen:', isSidebarOpen);
+    }, [isMobile, isSidebarOpen]);
 
     return (
         <Sidebar
             className={`bg-gray-800 text-white flex flex-col h-screen ${
-                isSidebarOpen ? 'block' : 'hidden'
+                isSidebarOpen || isMobile ? 'block' : 'hidden'
             }`}
         >
             <div className='flex items-center justify-between border-b border-gray-700 p-1 h-14'>
@@ -97,7 +125,7 @@ export function AppSidebar({
                     <div className='ml-2'>
                         <IconButton>
                             <LogOutIcon
-                                className='justify-between text-sm font-semibold text-whatsapp hover:text-red-500'
+                                className='justify-between text-sm font-semibold text-white hover:text-red-500'
                                 onClick={signUserOut}
                             />
                         </IconButton>

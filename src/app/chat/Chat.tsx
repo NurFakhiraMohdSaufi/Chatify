@@ -1,3 +1,4 @@
+'use-client';
 import '@/styles/Chat.css';
 import '@mdi/font/css/materialdesignicons.min.css';
 

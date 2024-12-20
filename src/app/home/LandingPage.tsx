@@ -5,9 +5,14 @@ import logo from '@/images/logo-chatify.png';
 export default function LandingPage() {
     return (
         <div className='bg-black w-full h-screen flex items-center justify-center relative overflow-hidden'>
-            <div className='absolute inset-0 bg-cover bg-center bg-opacity-30'></div>
+            {/* Background Overlay */}
+            <div
+                className='absolute inset-0 bg-cover bg-center bg-opacity-50'
+                style={{backgroundImage: 'url(/path-to-your-image.jpg)'}}
+            ></div>
 
-            <div className='z-10 text-center text-white'>
+            {/* Content */}
+            <div className='z-10 text-center text-white px-4 md:px-8'>
                 <h1 className='text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 animate__animated animate__fadeIn animate__delay-1s'>
                     Welcome to <span className='text-whatsapp'>Chatify</span>
                 </h1>
