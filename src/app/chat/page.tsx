@@ -35,7 +35,7 @@ interface Message {
     createdAt: number;
 }
 
-export default function ListChat({setRoom, setIsInChat}: ListRoomProps) {
+const ListChat: React.FC<ListChatProps> = ({setRoom, setIsInChat}) => {
     const [rooms, setRooms] = useState<
         {roomName: string; roomPhotoURL: string}[]
     >([]);
@@ -317,4 +317,6 @@ export default function ListChat({setRoom, setIsInChat}: ListRoomProps) {
             </div>
         </div>
     );
-}
+};
+
+export default ListChat;
