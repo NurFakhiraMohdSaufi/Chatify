@@ -1,3 +1,5 @@
+'use-client';
+
 import '@/styles/ListChat.css';
 
 import {
