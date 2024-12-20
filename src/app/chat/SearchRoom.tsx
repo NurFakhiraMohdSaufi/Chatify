@@ -14,7 +14,7 @@ import React, { JSX, useEffect, useState } from 'react';
 import { auth, db } from '@/config/firebase-config';
 import { RoomData } from '@/interfaces/RoomData';
 
-import { CreateGroup } from './CreateGroup';
+import CreateGroup from './CreateGroup';
 
 export interface SearchRoomProps {
     setRoom: (roomName: string) => void;

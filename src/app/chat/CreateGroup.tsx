@@ -19,7 +19,7 @@ interface CreateRoomProps {
     setIsInChat: (isInChat: boolean) => void;
 }
 
-export function CreateGroup({setIsInChat}: CreateRoomProps) {
+export default function CreateGroup({setIsInChat}: CreateRoomProps) {
     const [open, setOpen] = useState(false);
     const [roomName, setRoomName] = useState('');
     const [error, setError] = useState('');

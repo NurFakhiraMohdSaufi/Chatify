@@ -31,7 +31,7 @@ interface Room {
     room: string;
 }
 
-export function RoomInfo({room}: Room) {
+export default function RoomInfo({room}: Room) {
     const [roomDesc, setRoomDesc] = useState('');
     const [roomName, setRoomName] = useState('');
     const [idRoom, setIdRoom] = useState('');

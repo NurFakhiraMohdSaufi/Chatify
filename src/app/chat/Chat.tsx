@@ -17,7 +17,7 @@ import React, { useEffect, useRef, useState } from 'react';
 
 import { auth, db } from '@/config/firebase-config';
 
-import { RoomInfo } from './RoomInfo';
+import RoomInfo from './RoomInfo';
 
 interface Room {
     room: string;
