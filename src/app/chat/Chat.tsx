@@ -12,6 +12,7 @@ import {
 	Timestamp,
 	where,
 } from 'firebase/firestore';
+import Image from 'next/image';
 import React, { useEffect, useRef, useState } from 'react';
 
 import { auth, db } from '@/config/firebase-config';
@@ -338,8 +339,10 @@ export default function Room({room}: Room) {
                         {/* Display image and make it smaller if it's part of a reply */}
                         {message.image && (
                             <div className='message-image'>
-                                <img
+                                <Image
                                     src={message.image}
+                                    width={200}
+                                    height={200}
                                     alt='Image'
                                     onClick={() => handleReplyClick(message)}
                                     className={
@@ -384,7 +387,12 @@ export default function Room({room}: Room) {
                 {/* Image Preview Section */}
                 {imageFile && (
                     <div className='image-preview'>
-                        <img src={imageFile} alt='Image preview' />
+                        <Image
+                            src={imageFile}
+                            width={200}
+                            height={200}
+                            alt='Image preview'
+                        />
                         <button
                             type='button'
                             className='mdi mdi-close-circle close-preview-button'
