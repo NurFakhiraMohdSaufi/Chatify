@@ -22,7 +22,6 @@ import { auth, db } from '@/config/firebase-config';
 import Box from '@mui/material/Box';
 import CircularProgress from '@mui/material/CircularProgress';
 
-// Change from default export to named export
 interface ListRoomProps {
     setRoom: (roomName: string) => void;
     setIsInChat: (isInChat: boolean) => void;
@@ -36,7 +35,6 @@ interface Message {
     createdAt: number;
 }
 
-// Default export for the component itself
 export default function ListChat({setRoom, setIsInChat}: ListRoomProps) {
     const [rooms, setRooms] = useState<
         {roomName: string; roomPhotoURL: string}[]
@@ -60,8 +58,11 @@ export default function ListChat({setRoom, setIsInChat}: ListRoomProps) {
             const unsubscribeRooms = onSnapshot(queryChat, async (snapshot) => {
                 const roomsList: {roomName: string; roomPhotoURL: string}[] =
                     [];
-                if (snapshot.empty) setNoRooms(true);
-                else setNoRooms(false);
+                if (snapshot.empty) {
+                    setNoRooms(true);
+                } else {
+                    setNoRooms(false);
+                }
 
                 for (const docSnap of snapshot.docs) {
                     const data = docSnap.data();
@@ -109,7 +110,6 @@ export default function ListChat({setRoom, setIsInChat}: ListRoomProps) {
                         where('userId', '==', user),
                         where('roomId', '==', room.roomName),
                     );
-
                     const querySnapshot = await getDocs(userRoomQuery);
 
                     let lastRead = 0;
@@ -168,7 +168,7 @@ export default function ListChat({setRoom, setIsInChat}: ListRoomProps) {
             return () =>
                 unsubscribeMessages.forEach((unsubscribe) => unsubscribe());
         }
-    }, [rooms]);
+    }, [rooms, user]);
 
     const handleRoomClick = async (roomName: string) => {
         setRoom(roomName);
