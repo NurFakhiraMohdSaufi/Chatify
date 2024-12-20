@@ -11,7 +11,7 @@ export default {
         extend: {
             colors: {
                 chatify: '#86BC25',
-                background: 'hsl(var(--background))',
+                background: 'black',
                 foreground: 'hsl(var(--foreground))',
                 card: {
                     DEFAULT: 'hsl(var(--card))',
