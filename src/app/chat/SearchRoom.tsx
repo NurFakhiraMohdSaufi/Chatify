@@ -16,7 +16,7 @@ import { RoomData } from '@/interfaces/RoomData';
 
 import { CreateGroup } from './CreateGroup';
 
-interface SearchRoomProps {
+export interface SearchRoomProps {
     setRoom: (roomName: string) => void;
     setIsInChat: (isInChat: boolean) => void;
 }

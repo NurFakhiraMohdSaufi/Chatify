@@ -1,3 +1,5 @@
+'use client';
+
 import '@/styles/ListChat.css';
 
 import {
@@ -41,11 +43,7 @@ export default function ListChat({setRoom, setIsInChat}: RoomProps) {
         {roomName: string; messages: Message[]}[]
     >([]);
     const [notifications, setNotifications] = useState<
-        {
-            roomName: string;
-            hasNewMessage: boolean;
-            newMessageCount: number;
-        }[]
+        {roomName: string; hasNewMessage: boolean; newMessageCount: number}[]
     >([]);
     const [loading, setLoading] = useState(true);
     const [noRooms, setNoRooms] = useState(false);
@@ -104,19 +102,23 @@ export default function ListChat({setRoom, setIsInChat}: RoomProps) {
                     const messagesForRoom: Message[] = [];
                     let hasNewMessage = false;
 
+                    // Query the 'userRooms' collection where 'userId' matches the current user and 'roomId' matches the room name
                     const userRoomQuery = query(
                         collection(db, 'userRooms'),
                         where('userId', '==', user),
                         where('roomId', '==', room.roomName),
                     );
 
+                    // Execute the query
                     const querySnapshot = await getDocs(userRoomQuery);
 
-                    let lastRead = 0;
+                    // Check if the query returned any documents
+                    let lastRead = 0; // Default value if no document exists
                     if (!querySnapshot.empty) {
+                        // If a matching document exists, retrieve the 'lastRead' timestamp
                         querySnapshot.forEach((doc) => {
                             const data = doc.data();
-                            lastRead = data?.lastRead || 0;
+                            lastRead = data?.lastRead || 0; // Use the 'lastRead' field if it exists, otherwise default to 0
                         });
                     }
 
@@ -132,6 +134,7 @@ export default function ListChat({setRoom, setIsInChat}: RoomProps) {
                             createdAt: data.createdAt,
                         };
 
+                        // Determine if the message is new
                         if (data.createdAt > lastRead && data.user !== user) {
                             hasNewMessage = true;
                             newMessageCount++;
@@ -140,6 +143,7 @@ export default function ListChat({setRoom, setIsInChat}: RoomProps) {
                         messagesForRoom.push(message);
                     });
 
+                    // Update messages state
                     setMessage((prevMessages) => {
                         const updatedMessages = prevMessages.filter(
                             (msg) => msg.roomName !== room.roomName,
@@ -151,6 +155,7 @@ export default function ListChat({setRoom, setIsInChat}: RoomProps) {
                         return updatedMessages;
                     });
 
+                    // Update notifications state
                     setNotifications((prevNotifications) => {
                         const updatedNotifications = prevNotifications.filter(
                             (notif) => notif.roomName !== room.roomName,
@@ -175,6 +180,7 @@ export default function ListChat({setRoom, setIsInChat}: RoomProps) {
         setIsInChat(true);
         setSelectedRoom(roomName);
 
+        // Clear the badge notification for this room
         setNotifications((prevNotifications) =>
             prevNotifications.map((notif) =>
                 notif.roomName === roomName
@@ -184,6 +190,7 @@ export default function ListChat({setRoom, setIsInChat}: RoomProps) {
         );
 
         try {
+            // Query userRooms collection for documents where userId matches the current user
             const userRoomQuery = query(
                 collection(db, 'userRooms'),
                 where('userId', '==', user),
@@ -193,10 +200,12 @@ export default function ListChat({setRoom, setIsInChat}: RoomProps) {
             const querySnapshot = await getDocs(userRoomQuery);
 
             if (!querySnapshot.empty) {
+                // If a document exists, update the lastRead timestamp
                 querySnapshot.forEach(async (doc) => {
                     await updateDoc(doc.ref, {lastRead: serverTimestamp()});
                 });
             } else {
+                // If no matching document exists, create a new one
                 const userRoomRef = doc(
                     collection(db, 'userRooms'),
                     `${user}_${roomName}`,
