@@ -16,7 +16,7 @@ import {
 } from 'firebase/firestore';
 import { Circle } from 'lucide-react';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { auth, db } from '@/config/firebase-config';
 import Box from '@mui/material/Box';
