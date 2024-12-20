@@ -1,0 +1,87 @@
+.auth-container {
+    @apply h-screen flex relative bg-black;
+}
+
+.card-auth {
+    @apply p-10 m-auto bg-white rounded-md shadow-xl lg:max-w-xl;
+}
+
+.form-card {
+    @apply absolute mezzo w-80;
+}
+
+.header-container {
+    @apply absolute top-0 p-8 flex justify-between w-full items-center;
+}
+
+.header-title {
+    @apply text-4xl text-black uppercase font-bold font-sans;
+}
+
+.header-t {
+    @apply text-3xl font-semibold text-center text-chatify uppercase;
+}
+
+.responsive-logo {
+    width: 350px;
+    height: 350px;
+}
+
+@media (max-width: 768px) {
+    .responsive-logo {
+        width: 200px;
+        height: 200px;
+    }
+}
+
+/* Adjust for small screens */
+@media (max-width: 480px) {
+    .responsive-logo {
+        width: 200px;
+        height: 200px;
+    }
+}
+
+.alert-warning {
+    @apply text-red-500 text-center bg-white border rounded-md border-red-400;
+}
+
+.label {
+    @apply block text-sm text-center font-semibold text-white mt-3 mb-1;
+}
+
+.input {
+    @apply block w-full px-4 py-2 text-black bg-white border rounded-md focus:border-chatify focus:ring-chatify focus:outline-none focus:ring focus:ring-opacity-40;
+}
+.button-submit {
+    @apply w-full px-4 py-2 tracking-wide text-black transition-colors duration-200 transform bg-chatify uppercase font-bold rounded-md hover:bg-opacity-50 focus:outline-none focus:bg-chatify;
+}
+.button-google {
+    @apply flex items-center justify-center w-full bg-chatify p-2 border border-gray-600 rounded-md hover:bg-chatify focus:ring-2 focus:ring-offset-1 hover:bg-opacity-50;
+}
+.or-area {
+    @apply relative flex items-center justify-center w-full mt-6 border border-b-2 border-chatify;
+}
+.or-text {
+    @apply absolute px-5 bg-black text-white;
+}
+.no-acc-text {
+    @apply mt-8 text-sm font-light text-center text-gray-300;
+}
+.link-text {
+    @apply font-medium text-chatify hover:underline;
+}
+.icon-google {
+    @apply w-5 h-5 fill-current;
+}
+.forgot-password-label {
+    @apply m-3 text-xs font-light text-center text-chatify;
+}
+.forgot-password-button {
+    @apply font-medium font-bold text-chatify hover:underline;
+}
+
+.mezzo {
+    top: 10%;
+    left: 55%;
+}

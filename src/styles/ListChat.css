@@ -1,0 +1,47 @@
+.list-container {
+    @apply w-full flex flex-col mt-1 bg-black;
+}
+
+.header-room {
+    @apply text-lg font-semibold text-amber-600 mb-4;
+}
+
+.header-title {
+    @apply font-bold text-xs text-white;
+}
+
+.header-convo {
+    @apply font-bold text-sm text-white;
+}
+
+.card-list {
+    @apply divide-y divide-gray-700 flex flex-col -mx-2 h-auto overflow-y-auto;
+}
+
+.button-chat {
+    @apply w-full text-left py-3 transition duration-150 ease-in-out flex flex-row items-center hover:bg-chatify;
+}
+
+.button-chat:hover {
+    @apply bg-chatify;
+}
+
+.chat-list {
+    @apply flex flex-col ml-2;
+}
+
+.title-name {
+    @apply flex justify-between items-center text-sm font-semibold text-white text-left mr-2;
+}
+
+.icon-profile {
+    @apply rounded-full h-8 w-8 flex-shrink-0;
+}
+
+.title-chat {
+    @apply text-xs text-white text-left mr-2;
+    /* overflow: hidden;
+    white-space: normal;
+    text-overflow: ellipsis;
+    max-width: 80%; */
+}
