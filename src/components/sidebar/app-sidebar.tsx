@@ -3,11 +3,10 @@ import '@/styles/Room.css';
 import { signOut } from 'firebase/auth';
 import { LogOutIcon } from 'lucide-react';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
 import Cookies from 'universal-cookie';
 
-import ListChat from '@/app/chat/page';
-import SearchRoom from '@/app/chat/SearchRoom';
+// import ListChat from '@/app/chat/page';
+// import { SearchRoom } from '@/app/chat/SearchRoom';
 import { ProfileUser } from '@/app/profile/ProfileUser';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import {
@@ -22,7 +21,7 @@ import {
 	SidebarTrigger,
 } from '@/components/ui/sidebar';
 import { auth } from '@/config/firebase-config';
-import logo from '@/images/logo-chatify.png';
+// import logo from '@/chatify-logo.png';
 import { IconButton } from '@mui/material';
 
 const cookies = new Cookies();
@@ -35,23 +34,18 @@ interface Room {
 }
 
 export function AppSidebar({
-    setRoom,
-    setIsInChat,
+    // setRoom,
+    // setIsInChat,
     isSidebarOpen,
     toggleSidebar,
 }: Room) {
     // const user = auth.currentUser?.displayName;
-    const router = useRouter();
 
     const signUserOut = async () => {
         await signOut(auth);
         cookies.remove('auth-token');
         // setIsAuth(false);
-        setIsInChat(false);
-    };
-
-    const homeButton = () => {
-        router.push('/home');
+        // setIsInChat(false);
     };
 
     return (
@@ -63,12 +57,10 @@ export function AppSidebar({
             <div className='flex items-center justify-between border-b border-gray-700 p-1 h-14'>
                 <SidebarHeader>
                     <Image
-                        className='cursor-pointer'
-                        src={logo}
+                        src='/src/chatify-logo.png'
                         width={100}
                         height={100}
                         alt='Chatify Logo'
-                        onClick={homeButton}
                     />
                 </SidebarHeader>
 
@@ -81,14 +73,15 @@ export function AppSidebar({
                         <SidebarGroupContent className='flex flex-col'>
                             <SidebarMenu className='flex-grow'>
                                 <SidebarMenuItem>
-                                    <SearchRoom
+                                    List chat
+                                    {/* <SearchRoom
                                         setRoom={setRoom}
                                         setIsInChat={setIsInChat}
                                     />
                                     <ListChat
                                         setRoom={setRoom}
                                         setIsInChat={setIsInChat}
-                                    />
+                                    /> */}
                                 </SidebarMenuItem>
                             </SidebarMenu>
                         </SidebarGroupContent>
