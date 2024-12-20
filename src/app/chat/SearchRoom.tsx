@@ -21,7 +21,7 @@ export interface SearchRoomProps {
     setIsInChat: (isInChat: boolean) => void;
 }
 
-export function SearchRoom({
+export default function SearchRoom({
     setRoom,
     setIsInChat,
 }: SearchRoomProps): JSX.Element {

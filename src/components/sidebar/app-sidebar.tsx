@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 import Cookies from 'universal-cookie';
 
 import ListChat from '@/app/chat/page';
-import { SearchRoom } from '@/app/chat/SearchRoom';
+import SearchRoom from '@/app/chat/SearchRoom';
 import { ProfileUser } from '@/app/profile/ProfileUser';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import {
