@@ -27,8 +27,8 @@ import { IconButton } from '@mui/material';
 const cookies = new Cookies();
 
 interface Room {
-    setRoom: (roomName: string) => void;
-    setIsInChat: (isInChat: boolean) => void;
+    // setRoom: (roomName: string) => void;
+    // setIsInChat: (isInChat: boolean) => void;
     isSidebarOpen: boolean;
     toggleSidebar: () => void;
 }
