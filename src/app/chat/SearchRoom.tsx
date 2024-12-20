@@ -16,12 +16,15 @@ import { RoomData } from '@/interfaces/RoomData';
 
 import { CreateGroup } from './CreateGroup';
 
-interface RoomProps {
+interface SearchRoomProps {
     setRoom: (roomName: string) => void;
     setIsInChat: (isInChat: boolean) => void;
 }
 
-export function SearchRoom({setRoom, setIsInChat}: RoomProps): JSX.Element {
+export function SearchRoom({
+    setRoom,
+    setIsInChat,
+}: SearchRoomProps): JSX.Element {
     const [roomName, setRoomName] = useState('');
     const [rooms, setRooms] = useState<RoomData[]>([]);
 
