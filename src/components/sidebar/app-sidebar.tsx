@@ -3,6 +3,7 @@ import '@/styles/Room.css';
 import { signOut } from 'firebase/auth';
 import { LogOutIcon } from 'lucide-react';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import Cookies from 'universal-cookie';
 
 import ListChat from '@/app/chat/page';
@@ -40,12 +41,17 @@ export function AppSidebar({
     toggleSidebar,
 }: Room) {
     // const user = auth.currentUser?.displayName;
+    const router = useRouter();
 
     const signUserOut = async () => {
         await signOut(auth);
         cookies.remove('auth-token');
         // setIsAuth(false);
         setIsInChat(false);
+    };
+
+    const homeButton = () => {
+        router.push('/home');
     };
 
     return (
@@ -57,10 +63,12 @@ export function AppSidebar({
             <div className='flex items-center justify-between border-b border-gray-700 p-1 h-14'>
                 <SidebarHeader>
                     <Image
+                        className='cursor-pointer'
                         src={logo}
                         width={100}
                         height={100}
                         alt='Chatify Logo'
+                        onClick={homeButton}
                     />
                 </SidebarHeader>
 

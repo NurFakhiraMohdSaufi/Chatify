@@ -15,7 +15,9 @@ import { Input } from '@/components/ui/input';
 import { auth, db } from '@/config/firebase-config';
 import { IconButton } from '@mui/material';
 
-import { RoomProps } from '../../interfaces/RoomProps';
+interface RoomProps {
+    setIsInChat: (isInChat: boolean) => void;
+}
 
 export function CreateGroup({setIsInChat}: RoomProps) {
     const [open, setOpen] = useState(false);

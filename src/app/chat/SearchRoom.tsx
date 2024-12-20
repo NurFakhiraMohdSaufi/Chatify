@@ -9,18 +9,21 @@ import {
 	Timestamp,
 	where,
 } from 'firebase/firestore';
-import React, { useEffect, useState } from 'react';
+import React, { JSX, useEffect, useState } from 'react';
 
 import { auth, db } from '@/config/firebase-config';
 import { RoomData } from '@/interfaces/RoomData';
 
-import { RoomProps } from '../../interfaces/RoomProps';
 import { CreateGroup } from './CreateGroup';
 
-export function SearchRoom({setRoom, setIsInChat}: RoomProps) {
+interface RoomProps {
+    setRoom: (roomName: string) => void;
+    setIsInChat: (isInChat: boolean) => void;
+}
+
+export function SearchRoom({setRoom, setIsInChat}: RoomProps): JSX.Element {
     const [roomName, setRoomName] = useState('');
     const [rooms, setRooms] = useState<RoomData[]>([]);
-    // const [users, setUsers] = useState<any[]>([]);
 
     useEffect(() => {
         const searchRooms = async () => {
@@ -45,34 +48,12 @@ export function SearchRoom({setRoom, setIsInChat}: RoomProps) {
         searchRooms();
     }, [roomName]);
 
-    useEffect(() => {
-        const searchUsers = async () => {
-            if (roomName.trim() === '') {
-                // setUsers([]);
-                return;
-            }
-
-            const q = query(
-                collection(db, 'users'),
-                where('name', '>=', roomName),
-                where('name', '<=', roomName + '\uf8ff'),
-            );
-
-            const querySnapshot = await getDocs(q);
-            const userList = querySnapshot.docs.map((doc) => doc.data());
-            // setUsers(userList);
-        };
-
-        searchUsers();
-    }, [roomName]);
-
     async function joinRoom(roomId: string) {
         try {
             const user = auth.currentUser?.displayName;
 
             if (!user) return;
 
-            // Check if the user is already part of the room
             const q = query(
                 collection(db, 'userRooms'),
                 where('userId', '==', user),
@@ -81,13 +62,11 @@ export function SearchRoom({setRoom, setIsInChat}: RoomProps) {
 
             const querySnapshot = await getDocs(q);
 
-            // If a document already exists, don't add a new one
             if (!querySnapshot.empty) {
                 console.log('User is already in the room');
                 return;
             }
 
-            // If the user is not already in the room, add a new document
             await addDoc(collection(db, 'userRooms'), {
                 userId: user,
                 roomId,
@@ -108,8 +87,6 @@ export function SearchRoom({setRoom, setIsInChat}: RoomProps) {
 
         setRooms([]);
         setRoomName('');
-
-        console.log('Enter room: ', room);
     };
 
     const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -133,7 +110,7 @@ export function SearchRoom({setRoom, setIsInChat}: RoomProps) {
                 </div>
 
                 <div className='ml-4'>
-                    <CreateGroup setRoom={setRoom} setIsInChat={setIsInChat} />
+                    <CreateGroup setIsInChat={setIsInChat} />
                 </div>
             </div>
 
