@@ -217,7 +217,7 @@ export function EditProfile({onProfileEdit}: EditProfileProps) {
 
                             <label
                                 htmlFor='profile-upload'
-                                className='absolute bottom-0 right-5 bg-chatify text-white cursor-pointer flex items-center justify-center w-10 h-10 rounded-full transition-all duration-200 transform hover:scale-110'
+                                className='absolute bottom-0 right-6 bg-chatify text-white cursor-pointer flex items-center justify-center w-10 h-10 rounded-full transition-all duration-200 transform hover:scale-110'
                                 title='Edit Profile Picture'
                             >
                                 <span className='mdi mdi-camera text-lg'></span>{' '}
