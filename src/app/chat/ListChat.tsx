@@ -241,7 +241,7 @@ export default function ListChat({setRoom, setIsInChat}: RoomProps) {
                             key={index}
                             className={`button-chat ${
                                 selectedRoom === room.roomName
-                                    ? 'bg-whatsapp'
+                                    ? 'bg-chatify'
                                     : ''
                             }`}
                             onClick={() => handleRoomClick(room.roomName)}

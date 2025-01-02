@@ -126,7 +126,7 @@ export function SearchRoom({setRoom, setIsInChat}: RoomProps) {
                     <input
                         type='text'
                         onChange={handleSearchChange}
-                        className='px-4 py-2 w-full text-black bg-white border-b border-whatsapp rounded-md pl-10 focus:outline-none focus:ring-2 focus:ring-whatsapp'
+                        className='px-4 py-2 w-full text-black bg-white border-b border-chatify rounded-md pl-10 focus:outline-none focus:ring-2 focus:ring-chatify'
                         placeholder='Search'
                     />
                     <i className='fa fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-black w-5 h-5'></i>
@@ -144,7 +144,7 @@ export function SearchRoom({setRoom, setIsInChat}: RoomProps) {
                             <li
                                 key={index}
                                 onClick={() => handleEnterChat(room.room)}
-                                className='cursor-pointer p-2 bg-gray-500 hover:bg-whatsapp rounded-md'
+                                className='cursor-pointer p-2 bg-gray-500 hover:bg-chatify rounded-md'
                             >
                                 {room.room}
                             </li>

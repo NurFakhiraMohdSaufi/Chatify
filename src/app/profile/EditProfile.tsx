@@ -201,7 +201,7 @@ export function EditProfile({onProfileEdit}: EditProfileProps) {
                     <div className='flex justify-center items-center p-7'>
                         <div className='relative'>
                             {/* Profile image container with rounded border and shadow */}
-                            <div className='h-40 w-40 rounded-full overflow-hidden border-4 border-whatsapp flex items-center justify-center shadow-lg hover:shadow-2xl transition-shadow duration-300'>
+                            <div className='h-40 w-40 rounded-full overflow-hidden border-4 border-chatify flex items-center justify-center shadow-lg hover:shadow-2xl transition-shadow duration-300'>
                                 <Image
                                     src={
                                         imageFile ||
@@ -217,7 +217,7 @@ export function EditProfile({onProfileEdit}: EditProfileProps) {
 
                             <label
                                 htmlFor='profile-upload'
-                                className='absolute bottom-0 right-5 bg-whatsapp text-white cursor-pointer flex items-center justify-center w-10 h-10 rounded-full transition-all duration-200 transform hover:scale-110'
+                                className='absolute bottom-0 right-5 bg-chatify text-white cursor-pointer flex items-center justify-center w-10 h-10 rounded-full transition-all duration-200 transform hover:scale-110'
                                 title='Edit Profile Picture'
                             >
                                 <span className='mdi mdi-camera text-lg'></span>{' '}
@@ -253,7 +253,7 @@ export function EditProfile({onProfileEdit}: EditProfileProps) {
                 </div>
                 <DialogFooter>
                     <Button
-                        className='bg-whatsapp text-black px-6 py-3 rounded-md hover:bg-white hover:text-black focus:ring-2 focus:ring-[#86BC25] transform hover:scale-105 transition-all duration-300'
+                        className='bg-chatify text-black px-6 py-3 rounded-md hover:bg-white hover:text-black focus:ring-2 focus:ring-[#86BC25] transform hover:scale-105 transition-all duration-300'
                         type='submit'
                         onClick={handleUpdateName}
                     >

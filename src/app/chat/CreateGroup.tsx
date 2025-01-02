@@ -63,7 +63,7 @@ export function CreateGroup({setIsInChat}: RoomProps) {
             <DialogTrigger asChild>
                 <IconButton className='bg-[#86BC25] p-3 rounded-full shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-110'>
                     <MessageCirclePlusIcon
-                        className='text-white text-lg hover:text-whatsapp'
+                        className='text-white text-lg hover:text-chatify'
                         onClick={() => setOpen(true)}
                     >
                         <title>Create New Chat Room</title>

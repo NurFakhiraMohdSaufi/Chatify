@@ -14,7 +14,7 @@ export default function LandingPage() {
             {/* Content */}
             <div className='z-10 text-center text-white px-4 md:px-8'>
                 <h1 className='text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 animate__animated animate__fadeIn animate__delay-1s'>
-                    Welcome to <span className='text-whatsapp'>Chatify</span>
+                    Welcome to <span className='text-chatify'>Chatify</span>
                 </h1>
                 <div className='place-items-center m-7'>
                     <Image

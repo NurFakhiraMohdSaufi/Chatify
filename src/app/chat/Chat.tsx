@@ -466,7 +466,7 @@ export default function Room({room}: Room) {
 
                     <button
                         type='submit'
-                        className='mdi mdi-send send-button border-white border-2 hover:text-whatsapp'
+                        className='mdi mdi-send send-button border-white border-2 hover:text-chatify'
                         disabled={newMessage === '' && !imageFile}
                     ></button>
                 </div>
