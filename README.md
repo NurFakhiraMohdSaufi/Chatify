@@ -11,12 +11,12 @@ A real-time chat application that allows users to send and receive messages, cre
 
 ## Demo
 
-
+Can visit [Chatify](https://rawrmen.com/) for the demo
 
 ## Tech Stack
 
 - Frontend: React.js, Next.js
-- Backend: Firebase 
+- Backend: Firebase
 - Deployment: Docker, Vercel
 
 ## Installation
