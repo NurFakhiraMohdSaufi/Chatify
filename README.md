@@ -35,13 +35,13 @@ git clone https://github.com/NurFakhiraMohdSaufi/Chat-App.git
 cd Chat-App
 ```
 
-### Install dependencies
+### 3. Install dependencies
 
 ```bash
 npm install
 ```
 
-## Usage
+### 4. Usage
 
 To run the project locally, use the following command:
 
@@ -65,4 +65,4 @@ Open [localhost](http://localhost:3000) in your browser to interact with the Cha
 
 ## Deploy on Vercel
 
-The easiest way to deploy Chatify app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The easiest way to deploy Chatify app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme).
