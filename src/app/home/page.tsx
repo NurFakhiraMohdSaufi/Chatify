@@ -46,7 +46,7 @@ export default function Home() {
                 toggleSidebar={toggleSidebar}
             />
 
-            <SidebarTrigger onClick={toggleSidebar} />
+            {!isSidebarOpen && <SidebarTrigger onClick={toggleSidebar} />}
             {!isInChat ? <LandingPage /> : room && <Room room={room} />}
         </SidebarProvider>
     );
