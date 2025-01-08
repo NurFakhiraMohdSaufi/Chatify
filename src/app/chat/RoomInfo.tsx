@@ -264,7 +264,7 @@ export function RoomInfo({room}: Room) {
                         </DialogDescription>
                     </DialogHeader>
 
-                    <ScrollArea className='flex-1 overflow-y-auto max-h-[400px] hover:border-2 hover:border-[#86BC25] transition-all p-3'>
+                    <ScrollArea className='flex-1 overflow-y-auto max-h-[350px] hover:border-2 hover:border-[#86BC25] transition-all p-3 bg-transparent'>
                         <div className='grid gap-4 py-4'>
                             <div className='flex justify-center items-center p-7'>
                                 <div className='relative'>
@@ -353,7 +353,7 @@ export function RoomInfo({room}: Room) {
 
                     <DialogFooter>
                         <Button
-                            className='bg-white text-black px-6 py-3 rounded-md hover:bg-[#86BC25] hover:text-black focus:ring-2 focus:ring-[#86BC25] transform hover:scale-105 transition-all duration-300'
+                            className='bg-chatify text-black px-6 py-3 rounded-md hover:bg-white hover:text-black focus:ring-2 focus:ring-[#86BC25] transform hover:scale-105 transition-all duration-300'
                             type='submit'
                             onClick={handleUpdateRoomInfo}
                         >

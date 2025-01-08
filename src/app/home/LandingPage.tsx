@@ -6,10 +6,7 @@ export default function LandingPage() {
     return (
         <div className='bg-black w-full h-screen flex items-center justify-center relative overflow-hidden'>
             {/* Background Overlay */}
-            <div
-                className='absolute inset-0 bg-cover bg-center bg-opacity-50'
-                style={{backgroundImage: 'url(/path-to-your-image.jpg)'}}
-            ></div>
+            <div className='absolute inset-0 bg-cover bg-center bg-opacity-50'></div>
 
             {/* Content */}
             <div className='z-10 text-center text-white px-4 md:px-8'>

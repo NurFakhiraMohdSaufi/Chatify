@@ -33,6 +33,8 @@ interface EditProfileProps {
 export function EditProfile({onProfileEdit}: EditProfileProps) {
     const user = auth.currentUser?.displayName ?? '';
     const userData = auth.currentUser;
+    const defaultProfilePicture =
+        'https://i.pinimg.com/736x/d2/98/4e/d2984ec4b65a8568eab3dc2b640fc58e.jpg';
     const [userName, setUserName] = useState('');
 
     const [email, setEmail] = useState<string | null>(null);
@@ -124,54 +126,96 @@ export function EditProfile({onProfileEdit}: EditProfileProps) {
         }
     };
 
+    // const handleEditImage = async (
+    //     event: React.ChangeEvent<HTMLInputElement>,
+    // ) => {
+    //     const file = event.target.files?.[0];
+    //     if (file) {
+    //         try {
+    //             const options = {
+    //                 maxSizeMB: 1,
+    //                 maxWidthOrHeight: 1024,
+    //                 useWebWorker: true,
+    //             };
+
+    //             // Compress the image
+    //             const compressedFile = await imageCompression(file, options);
+
+    //             // Create a storage reference for the image
+    //             const storageRef = ref(
+    //                 storage,
+    //                 `profile_images/${userData?.uid}`,
+    //             );
+
+    //             // Upload the compressed image to Firebase Storage
+    //             const uploadTask = uploadBytesResumable(
+    //                 storageRef,
+    //                 compressedFile,
+    //             );
+
+    //             uploadTask.on(
+    //                 'state_changed',
+    //                 // (snapshot) => {},
+    //                 (error) => {
+    //                     console.error('Error uploading image:', error);
+    //                 },
+    //                 async () => {
+    //                     const downloadURL = await getDownloadURL(
+    //                         uploadTask.snapshot.ref,
+    //                     );
+
+    //                     setImageFile(downloadURL);
+    //                     console.log('imageFile: ', imageFile);
+    //                 },
+    //             );
+    //         } catch (error) {
+    //             console.error('Error compressing image:', error);
+    //         }
+    //     }
+    // };
+
     const handleEditImage = async (
         event: React.ChangeEvent<HTMLInputElement>,
     ) => {
         const file = event.target.files?.[0];
-        if (file) {
-            try {
-                const options = {
-                    maxSizeMB: 1,
-                    maxWidthOrHeight: 1024,
-                    useWebWorker: true,
-                };
 
-                // Compress the image
-                const compressedFile = await imageCompression(file, options);
+        if (!file) return;
 
-                // Create a storage reference for the image
-                const storageRef = ref(
-                    storage,
-                    `profile_images/${userData?.uid}`,
-                );
+        try {
+            const options = {
+                maxSizeMB: 1,
+                maxWidthOrHeight: 500,
+                useWebWorker: true,
+            };
 
-                // Upload the compressed image to Firebase Storage
-                const uploadTask = uploadBytesResumable(
-                    storageRef,
-                    compressedFile,
-                );
+            const compressedFile = await imageCompression(file, options);
 
-                uploadTask.on(
-                    'state_changed',
-                    // (snapshot) => {},
-                    (error) => {
-                        console.error('Error uploading image:', error);
-                    },
-                    async () => {
-                        const downloadURL = await getDownloadURL(
-                            uploadTask.snapshot.ref,
-                        );
+            const storageRef = ref(storage, `profile_images/${userData?.uid}`);
 
-                        setImageFile(downloadURL);
-                        console.log('imageFile: ', imageFile);
-                    },
-                );
-            } catch (error) {
-                console.error('Error compressing image:', error);
-            }
+            const uploadTask = uploadBytesResumable(storageRef, compressedFile);
+
+            uploadTask.on(
+                'state_changed',
+                (snapshot) => {
+                    const progress =
+                        (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    console.log('Upload is ' + progress + '% done');
+                },
+                (error) => {
+                    console.error('Upload failed:', error);
+                },
+                async () => {
+                    const downloadURL = await getDownloadURL(
+                        uploadTask.snapshot.ref,
+                    );
+                    setImageFile(downloadURL);
+                    console.log('File available at', downloadURL);
+                },
+            );
+        } catch (error) {
+            console.error('Error compressing image:', error);
         }
     };
-
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
@@ -206,7 +250,7 @@ export function EditProfile({onProfileEdit}: EditProfileProps) {
                                     src={
                                         imageFile ||
                                         userData?.photoURL ||
-                                        'https://i.pinimg.com/736x/d2/98/4e/d2984ec4b65a8568eab3dc2b640fc58e.jpg'
+                                        defaultProfilePicture
                                     }
                                     width={160}
                                     height={160}

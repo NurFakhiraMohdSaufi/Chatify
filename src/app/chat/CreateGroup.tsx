@@ -70,9 +70,9 @@ export function CreateGroup({setIsInChat}: RoomProps) {
                     </MessageCirclePlusIcon>
                 </IconButton>
             </DialogTrigger>
-            <DialogContent className='bg-black p-6 rounded-xl shadow-lg transition-all duration-500 transform hover:scale-105'>
+            <DialogContent className='sm:max-w-[425px] bg-black text-white'>
                 <DialogHeader>
-                    <DialogTitle className='text-2xl font-semibold text-[#86BC25]'>
+                    <DialogTitle className='text-left font-bold'>
                         Create New Room
                     </DialogTitle>
                 </DialogHeader>
@@ -95,15 +95,6 @@ export function CreateGroup({setIsInChat}: RoomProps) {
                 </div>
 
                 <DialogFooter className='flex justify-between'>
-                    {/* Close Button */}
-                    <Button
-                        type='button'
-                        className='bg-[#86BC25] text-black px-6 py-3 rounded-md hover:bg-white hover:text-black focus:ring-2 focus:ring-[#86BC25] transition-all duration-300 transform hover:scale-105'
-                        onClick={() => setOpen(false)} // Closes the modal
-                    >
-                        Close
-                    </Button>
-
                     {/* Create Button */}
                     <Button
                         type='submit'
